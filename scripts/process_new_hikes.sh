@@ -45,6 +45,12 @@ python scripts/build_manifest.py docs/data
 # Only committing generated map data -- raw detections.csv and .gpx files
 # stay gitignored (they can contain your home location in the track).
 git add docs/data
+
+if git diff --cached --quiet; then
+    echo "regenerated output is identical to what's already committed -- nothing to push"
+    exit 0
+fi
+
 git commit -m "Add ${NEW_HIKES} new hike(s)"
 git push
 
