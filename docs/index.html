@@ -28,7 +28,11 @@
     width: 280px; overflow-y: auto; background: #fafaf8;
     border-left: 1px solid #ddd; padding: 8px;
   }
-  #sidebar h2 { font-size: 13px; text-transform: uppercase; color: #666; margin: 8px 4px; }
+  #sidebar h2 {
+    font-size: 13px; text-transform: uppercase; color: #666; margin: 8px 4px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  #sidebar-toggle { display: none; font-size: 11px; }
   .species-row {
     display: flex; justify-content: space-between; align-items: center;
     padding: 8px 10px; margin-bottom: 4px; border-radius: 6px;
@@ -43,6 +47,24 @@
     padding: 2px 8px; color: #444;
   }
   #empty-state { padding: 12px; font-size: 13px; color: #888; }
+
+  /* --- Mobile: sidebar becomes a collapsible bottom sheet over the map --- */
+  @media (max-width: 700px) {
+    #topbar { gap: 8px 12px; padding: 8px 12px; }
+    #topbar h1 { width: 100%; }
+    #main { position: relative; }
+    #map { position: absolute; inset: 0; }
+    #sidebar {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 10;
+      width: auto; max-height: 60vh;
+      border-left: none; border-top: 1px solid #ddd;
+      border-radius: 14px 14px 0 0;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.2);
+      transition: max-height 0.2s ease;
+    }
+    #sidebar.collapsed { max-height: 44px; overflow: hidden; }
+    #sidebar-toggle { display: inline; }
+  }
 </style>
 </head>
 <body>
@@ -59,13 +81,21 @@
   </div>
   <div id="main">
     <div id="map"></div>
-    <div id="sidebar">
-      <h2>Species detected</h2>
+    <div id="sidebar" class="collapsed">
+      <h2>Species detected <span id="sidebar-toggle">▲</span></h2>
       <div id="species-list"></div>
     </div>
   </div>
 </div>
 
+<script>
+document.getElementById("sidebar").querySelector("h2").addEventListener("click", () => {
+  const sidebar = document.getElementById("sidebar");
+  const toggle = document.getElementById("sidebar-toggle");
+  sidebar.classList.toggle("collapsed");
+  toggle.textContent = sidebar.classList.contains("collapsed") ? "▲" : "▼";
+});
+</script>
 <script>
 // --- Basemap: plain OSM raster tiles, no API key needed. -----------------
 // Swap this `style` object for whatever tile source pdx-bird-report uses,
