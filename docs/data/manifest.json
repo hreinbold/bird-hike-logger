@@ -1,0 +1,9 @@
+[
+  {
+    "id": "2026-07-26_bird-detector-test",
+    "date": "2026-07-26",
+    "label": "Bird Detector Test",
+    "file": "data/2026-07-26_bird-detector-test.geojson",
+    "detection_count": 62
+  }
+]

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bird Hike Logger</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://unpkg.com/[email protected]/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/[email protected]/dist/maplibre-gl.js"></script>
+<style>
+  html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; }
+  #app { display: flex; flex-direction: column; height: 100%; }
+
+  #topbar {
+    display: flex; align-items: center; gap: 16px;
+    padding: 10px 16px; background: #1b2a1f; color: #f2f2f2;
+    flex-wrap: wrap;
+  }
+  #topbar h1 { font-size: 16px; margin: 0; margin-right: 8px; }
+  #topbar label { font-size: 13px; }
+  #hike-select { padding: 4px 6px; }
+  #confidence-slider { width: 180px; vertical-align: middle; }
+  #confidence-value { font-variant-numeric: tabular-nums; }
+
+  #main { display: flex; flex: 1; min-height: 0; }
+  #map { flex: 1; }
+
+  #sidebar {
+    width: 280px; overflow-y: auto; background: #fafaf8;
+    border-left: 1px solid #ddd; padding: 8px;
+  }
+  #sidebar h2 { font-size: 13px; text-transform: uppercase; color: #666; margin: 8px 4px; }
+  .species-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 10px; margin-bottom: 4px; border-radius: 6px;
+    cursor: pointer; background: #fff; border: 1px solid #e5e5e5;
+  }
+  .species-row:hover { background: #f0f4ef; }
+  .species-row.selected { background: #dcebd8; border-color: #7fae74; }
+  .species-name { font-size: 14px; }
+  .species-sci { font-size: 11px; color: #888; font-style: italic; }
+  .species-count {
+    font-size: 12px; background: #eee; border-radius: 10px;
+    padding: 2px 8px; color: #444;
+  }
+  #empty-state { padding: 12px; font-size: 13px; color: #888; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <h1>Bird Hike Logger</h1>
+    <label>Hike:
+      <select id="hike-select"></select>
+    </label>
+    <label>Min confidence:
+      <input type="range" id="confidence-slider" min="0" max="1" step="0.01" value="0.1">
+      <span id="confidence-value">0.10</span>
+    </label>
+  </div>
+  <div id="main">
+    <div id="map"></div>
+    <div id="sidebar">
+      <h2>Species detected</h2>
+      <div id="species-list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// --- Basemap: plain OSM raster tiles, no API key needed. -----------------
+// Swap this `style` object for whatever tile source pdx-bird-report uses,
+// if you want visual consistency across the two projects.
+const map = new maplibregl.Map({
+  container: "map",
+  style: {
+    version: 8,
+    sources: {
+      osm: {
+        type: "raster",
+        tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+        tileSize: 256,
+        attribution: "&copy; OpenStreetMap contributors",
+      },
+    },
+    layers: [{ id: "osm", type: "raster", source: "osm" }],
+  },
+  center: [-122.64, 45.52],
+  zoom: 13,
+});
+
+let currentGeojson = null;   // full parsed geojson for the active hike
+let selectedSpecies = null;  // null == show nothing until species list loads
+
+const hikeSelect = document.getElementById("hike-select");
+const confidenceSlider = document.getElementById("confidence-slider");
+const confidenceValue = document.getElementById("confidence-value");
+const speciesListEl = document.getElementById("species-list");
+
+async function loadManifest() {
+  const res = await fetch("data/manifest.json");
+  const hikes = await res.json();
+
+  hikeSelect.innerHTML = "";
+  for (const hike of hikes) {
+    const opt = document.createElement("option");
+    opt.value = hike.file;
+    opt.textContent = `${hike.label} (${hike.date})`;
+    hikeSelect.appendChild(opt);
+  }
+
+  if (hikes.length > 0) {
+    await loadHike(hikes[0].file);
+  }
+}
+
+async function loadHike(path) {
+  const res = await fetch(path);
+  currentGeojson = await res.json();
+  selectedSpecies = null;
+  render();
+}
+
+function detectionFeatures() {
+  const minConfidence = parseFloat(confidenceSlider.value);
+  return currentGeojson.features.filter(
+    f => f.properties.feature_type === "detection" &&
+         f.properties.confidence >= minConfidence
+  );
+}
+
+function routeFeature() {
+  return currentGeojson.features.find(f => f.properties.feature_type === "route");
+}
+
+function speciesCounts(features) {
+  const counts = new Map();
+  for (const f of features) {
+    const key = f.properties.species;
+    if (!counts.has(key)) {
+      counts.set(key, { species: key, sci: f.properties.scientific_name, count: 0 });
+    }
+    counts.get(key).count += 1;
+  }
+  return [...counts.values()].sort((a, b) => b.count - a.count);
+}
+
+function renderSpeciesList(sorted) {
+  speciesListEl.innerHTML = "";
+
+  if (sorted.length === 0) {
+    speciesListEl.innerHTML = '<div id="empty-state">No detections at this confidence level.</div>';
+    return;
+  }
+
+  // Default to the top species whenever nothing is selected, or the
+  // previous selection no longer has any detections at this threshold.
+  if (!selectedSpecies || !sorted.some(s => s.species === selectedSpecies)) {
+    selectedSpecies = sorted[0].species;
+  }
+
+  for (const entry of sorted) {
+    const row = document.createElement("div");
+    row.className = "species-row" + (entry.species === selectedSpecies ? " selected" : "");
+    row.innerHTML = `
+      <div>
+        <div class="species-name">${entry.species}</div>
+        <div class="species-sci">${entry.sci}</div>
+      </div>
+      <div class="species-count">${entry.count}</div>
+    `;
+    row.addEventListener("click", () => {
+      selectedSpecies = entry.species;
+      render();
+    });
+    speciesListEl.appendChild(row);
+  }
+}
+
+function updateMapLayers() {
+  const route = routeFeature();
+  const filtered = detectionFeatures().filter(f => f.properties.species === selectedSpecies);
+
+  const routeSource = map.getSource("route");
+  if (routeSource) {
+    routeSource.setData({ type: "FeatureCollection", features: route ? [route] : [] });
+  } else if (route) {
+    map.addSource("route", { type: "geojson", data: { type: "FeatureCollection", features: [route] } });
+    map.addLayer({
+      id: "route-line",
+      type: "line",
+      source: "route",
+      paint: { "line-color": "#4a6b3f", "line-width": 3, "line-opacity": 0.7 },
+    });
+  }
+
+  const markerData = { type: "FeatureCollection", features: filtered };
+  const markerSource = map.getSource("detections");
+  if (markerSource) {
+    markerSource.setData(markerData);
+  } else {
+    map.addSource("detections", { type: "geojson", data: markerData });
+    map.addLayer({
+      id: "detection-points",
+      type: "circle",
+      source: "detections",
+      paint: {
+        "circle-radius": 7,
+        "circle-color": "#c1440e",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#fff",
+      },
+    });
+  }
+
+  // Fit the view to the route on first load of a hike.
+  if (route && !map._fitDoneForCurrentHike) {
+    const coords = route.geometry.coordinates;
+    const bounds = coords.reduce(
+      (b, c) => b.extend(c),
+      new maplibregl.LngLatBounds(coords[0], coords[0])
+    );
+    map.fitBounds(bounds, { padding: 40 });
+    map._fitDoneForCurrentHike = true;
+  }
+}
+
+function render() {
+  if (!currentGeojson) return;
+  const sorted = speciesCounts(detectionFeatures());
+  renderSpeciesList(sorted);
+  updateMapLayers();
+}
+
+hikeSelect.addEventListener("change", () => {
+  map._fitDoneForCurrentHike = false;
+  loadHike(hikeSelect.value);
+});
+
+confidenceSlider.addEventListener("input", () => {
+  confidenceValue.textContent = parseFloat(confidenceSlider.value).toFixed(2);
+  render();
+});
+
+map.on("load", loadManifest);
+</script>
+</body>
+</html>

@@ -1,0 +1,1059 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64046,
+          45.517512
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.265,
+        "timestamp_utc": "2026-07-26T00:19:17+00:00",
+        "source_wav": "chunk_20260726T001905Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640578,
+          45.517629
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.667,
+        "timestamp_utc": "2026-07-26T00:19:34+00:00",
+        "source_wav": "chunk_20260726T001925Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640626,
+          45.517594
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.383,
+        "timestamp_utc": "2026-07-26T00:19:37+00:00",
+        "source_wav": "chunk_20260726T001925Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640673,
+          45.517639
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.969,
+        "timestamp_utc": "2026-07-26T00:19:46+00:00",
+        "source_wav": "chunk_20260726T001946Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640807,
+          45.517713
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.673,
+        "timestamp_utc": "2026-07-26T00:20:09+00:00",
+        "source_wav": "chunk_20260726T002006Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640803,
+          45.517717
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.94,
+        "timestamp_utc": "2026-07-26T00:20:12+00:00",
+        "source_wav": "chunk_20260726T002006Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640803,
+          45.517719
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.935,
+        "timestamp_utc": "2026-07-26T00:20:15+00:00",
+        "source_wav": "chunk_20260726T002006Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640798,
+          45.517723
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.884,
+        "timestamp_utc": "2026-07-26T00:20:18+00:00",
+        "source_wav": "chunk_20260726T002006Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640793,
+          45.517756
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.746,
+        "timestamp_utc": "2026-07-26T00:20:38+00:00",
+        "source_wav": "chunk_20260726T002026Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640792,
+          45.517745
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.698,
+        "timestamp_utc": "2026-07-26T00:20:49+00:00",
+        "source_wav": "chunk_20260726T002046Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640818,
+          45.517733
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.92,
+        "timestamp_utc": "2026-07-26T00:20:58+00:00",
+        "source_wav": "chunk_20260726T002046Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640841,
+          45.517736
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.359,
+        "timestamp_utc": "2026-07-26T00:21:07+00:00",
+        "source_wav": "chunk_20260726T002107Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640842,
+          45.517755
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.993,
+        "timestamp_utc": "2026-07-26T00:21:10+00:00",
+        "source_wav": "chunk_20260726T002107Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640838,
+          45.517758
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.976,
+        "timestamp_utc": "2026-07-26T00:21:13+00:00",
+        "source_wav": "chunk_20260726T002107Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640835,
+          45.517796
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.913,
+        "timestamp_utc": "2026-07-26T00:21:27+00:00",
+        "source_wav": "chunk_20260726T002127Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640818,
+          45.51781
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.919,
+        "timestamp_utc": "2026-07-26T00:21:36+00:00",
+        "source_wav": "chunk_20260726T002127Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64086,
+          45.517824
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.81,
+        "timestamp_utc": "2026-07-26T00:21:39+00:00",
+        "source_wav": "chunk_20260726T002127Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640915,
+          45.517825
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.965,
+        "timestamp_utc": "2026-07-26T00:21:47+00:00",
+        "source_wav": "chunk_20260726T002147Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640934,
+          45.517826
+        ]
+      },
+      "properties": {
+        "species": "Brown Creeper",
+        "scientific_name": "Certhia americana",
+        "confidence": 0.335,
+        "timestamp_utc": "2026-07-26T00:21:50+00:00",
+        "source_wav": "chunk_20260726T002147Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640959,
+          45.517821
+        ]
+      },
+      "properties": {
+        "species": "Brown Creeper",
+        "scientific_name": "Certhia americana",
+        "confidence": 0.622,
+        "timestamp_utc": "2026-07-26T00:21:53+00:00",
+        "source_wav": "chunk_20260726T002147Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640967,
+          45.51781
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.463,
+        "timestamp_utc": "2026-07-26T00:21:56+00:00",
+        "source_wav": "chunk_20260726T002147Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640969,
+          45.517808
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.905,
+        "timestamp_utc": "2026-07-26T00:21:59+00:00",
+        "source_wav": "chunk_20260726T002147Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640972,
+          45.517793
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.819,
+        "timestamp_utc": "2026-07-26T00:22:10+00:00",
+        "source_wav": "chunk_20260726T002207Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640998,
+          45.517807
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.96,
+        "timestamp_utc": "2026-07-26T00:22:19+00:00",
+        "source_wav": "chunk_20260726T002207Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640994,
+          45.5178
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.92,
+        "timestamp_utc": "2026-07-26T00:22:28+00:00",
+        "source_wav": "chunk_20260726T002228Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640991,
+          45.517796
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.77,
+        "timestamp_utc": "2026-07-26T00:22:31+00:00",
+        "source_wav": "chunk_20260726T002228Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640984,
+          45.51779
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.929,
+        "timestamp_utc": "2026-07-26T00:22:37+00:00",
+        "source_wav": "chunk_20260726T002228Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640982,
+          45.517787
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.985,
+        "timestamp_utc": "2026-07-26T00:22:40+00:00",
+        "source_wav": "chunk_20260726T002228Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640983,
+          45.517776
+        ]
+      },
+      "properties": {
+        "species": "American Crow",
+        "scientific_name": "Corvus brachyrhynchos",
+        "confidence": 0.382,
+        "timestamp_utc": "2026-07-26T00:22:48+00:00",
+        "source_wav": "chunk_20260726T002248Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640983,
+          45.517772
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.384,
+        "timestamp_utc": "2026-07-26T00:22:51+00:00",
+        "source_wav": "chunk_20260726T002248Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640983,
+          45.51777
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.802,
+        "timestamp_utc": "2026-07-26T00:22:54+00:00",
+        "source_wav": "chunk_20260726T002248Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640991,
+          45.517746
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.395,
+        "timestamp_utc": "2026-07-26T00:23:08+00:00",
+        "source_wav": "chunk_20260726T002308Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640993,
+          45.517742
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.329,
+        "timestamp_utc": "2026-07-26T00:23:11+00:00",
+        "source_wav": "chunk_20260726T002308Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640996,
+          45.517726
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.475,
+        "timestamp_utc": "2026-07-26T00:23:28+00:00",
+        "source_wav": "chunk_20260726T002328Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640998,
+          45.517722
+        ]
+      },
+      "properties": {
+        "species": "American Crow",
+        "scientific_name": "Corvus brachyrhynchos",
+        "confidence": 0.472,
+        "timestamp_utc": "2026-07-26T00:23:34+00:00",
+        "source_wav": "chunk_20260726T002328Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640998,
+          45.517721
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.769,
+        "timestamp_utc": "2026-07-26T00:23:37+00:00",
+        "source_wav": "chunk_20260726T002328Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641011,
+          45.517723
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.301,
+        "timestamp_utc": "2026-07-26T00:23:55+00:00",
+        "source_wav": "chunk_20260726T002349Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641013,
+          45.517722
+        ]
+      },
+      "properties": {
+        "species": "American Crow",
+        "scientific_name": "Corvus brachyrhynchos",
+        "confidence": 0.355,
+        "timestamp_utc": "2026-07-26T00:24:01+00:00",
+        "source_wav": "chunk_20260726T002349Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641007,
+          45.517719
+        ]
+      },
+      "properties": {
+        "species": "American Crow",
+        "scientific_name": "Corvus brachyrhynchos",
+        "confidence": 0.712,
+        "timestamp_utc": "2026-07-26T00:24:15+00:00",
+        "source_wav": "chunk_20260726T002409Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641003,
+          45.517714
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.796,
+        "timestamp_utc": "2026-07-26T00:24:29+00:00",
+        "source_wav": "chunk_20260726T002429Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641066,
+          45.517717
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.956,
+        "timestamp_utc": "2026-07-26T00:24:49+00:00",
+        "source_wav": "chunk_20260726T002449Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641072,
+          45.517716
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.993,
+        "timestamp_utc": "2026-07-26T00:24:52+00:00",
+        "source_wav": "chunk_20260726T002449Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641076,
+          45.517716
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.926,
+        "timestamp_utc": "2026-07-26T00:24:55+00:00",
+        "source_wav": "chunk_20260726T002449Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641084,
+          45.517712
+        ]
+      },
+      "properties": {
+        "species": "Black-capped Chickadee",
+        "scientific_name": "Poecile atricapillus",
+        "confidence": 0.254,
+        "timestamp_utc": "2026-07-26T00:25:16+00:00",
+        "source_wav": "chunk_20260726T002510Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641088,
+          45.51771
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.439,
+        "timestamp_utc": "2026-07-26T00:25:33+00:00",
+        "source_wav": "chunk_20260726T002530Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641086,
+          45.517714
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.275,
+        "timestamp_utc": "2026-07-26T00:25:36+00:00",
+        "source_wav": "chunk_20260726T002530Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641086,
+          45.517717
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.387,
+        "timestamp_utc": "2026-07-26T00:25:39+00:00",
+        "source_wav": "chunk_20260726T002530Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641079,
+          45.517696
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.282,
+        "timestamp_utc": "2026-07-26T00:25:53+00:00",
+        "source_wav": "chunk_20260726T002550Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641078,
+          45.517697
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.849,
+        "timestamp_utc": "2026-07-26T00:25:56+00:00",
+        "source_wav": "chunk_20260726T002550Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64105,
+          45.517711
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.986,
+        "timestamp_utc": "2026-07-26T00:26:19+00:00",
+        "source_wav": "chunk_20260726T002610Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641044,
+          45.517683
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.336,
+        "timestamp_utc": "2026-07-26T00:26:31+00:00",
+        "source_wav": "chunk_20260726T002631Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641056,
+          45.517653
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.995,
+        "timestamp_utc": "2026-07-26T00:26:40+00:00",
+        "source_wav": "chunk_20260726T002631Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.641062,
+          45.517759
+        ]
+      },
+      "properties": {
+        "species": "Cooper's Hawk",
+        "scientific_name": "Accipiter cooperii",
+        "confidence": 0.861,
+        "timestamp_utc": "2026-07-26T00:27:11+00:00",
+        "source_wav": "chunk_20260726T002711Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64291,
+          45.517438
+        ]
+      },
+      "properties": {
+        "species": "Golden-crowned Kinglet",
+        "scientific_name": "Regulus satrapa",
+        "confidence": 0.264,
+        "timestamp_utc": "2026-07-26T00:29:36+00:00",
+        "source_wav": "chunk_20260726T002933Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64511,
+          45.518314
+        ]
+      },
+      "properties": {
+        "species": "Chestnut-backed Chickadee",
+        "scientific_name": "Poecile rufescens",
+        "confidence": 0.508,
+        "timestamp_utc": "2026-07-26T00:33:19+00:00",
+        "source_wav": "chunk_20260726T003316Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.645111,
+          45.518309
+        ]
+      },
+      "properties": {
+        "species": "Chestnut-backed Chickadee",
+        "scientific_name": "Poecile rufescens",
+        "confidence": 0.692,
+        "timestamp_utc": "2026-07-26T00:33:22+00:00",
+        "source_wav": "chunk_20260726T003316Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.645111,
+          45.518309
+        ]
+      },
+      "properties": {
+        "species": "Golden-crowned Kinglet",
+        "scientific_name": "Regulus satrapa",
+        "confidence": 0.437,
+        "timestamp_utc": "2026-07-26T00:33:22+00:00",
+        "source_wav": "chunk_20260726T003316Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.645109,
+          45.518311
+        ]
+      },
+      "properties": {
+        "species": "Chestnut-backed Chickadee",
+        "scientific_name": "Poecile rufescens",
+        "confidence": 0.37,
+        "timestamp_utc": "2026-07-26T00:33:25+00:00",
+        "source_wav": "chunk_20260726T003316Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.642244,
+          45.518806
+        ]
+      },
+      "properties": {
+        "species": "Cedar Waxwing",
+        "scientific_name": "Bombycilla cedrorum",
+        "confidence": 0.506,
+        "timestamp_utc": "2026-07-26T00:38:11+00:00",
+        "source_wav": "chunk_20260726T003759Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64219,
+          45.518805
+        ]
+      },
+      "properties": {
+        "species": "American Crow",
+        "scientific_name": "Corvus brachyrhynchos",
+        "confidence": 0.335,
+        "timestamp_utc": "2026-07-26T00:40:04+00:00",
+        "source_wav": "chunk_20260726T004001Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.642197,
+          45.518803
+        ]
+      },
+      "properties": {
+        "species": "House Finch",
+        "scientific_name": "Haemorhous mexicanus",
+        "confidence": 0.58,
+        "timestamp_utc": "2026-07-26T00:40:07+00:00",
+        "source_wav": "chunk_20260726T004001Z.wav"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640462,
+          45.518105
+        ]
+      },
+      "properties": {
+        "species": "American Crow",
+        "scientific_name": "Corvus brachyrhynchos",
+        "confidence": 0.84,
+        "timestamp_utc": "2026-07-26T00:43:15+00:00",
+        "source_wav": "chunk_20260726T004303Z.wav"
+      }
+    }
+  ]
+}
