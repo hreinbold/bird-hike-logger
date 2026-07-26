@@ -20,6 +20,13 @@
   #hike-select { padding: 4px 6px; }
   #confidence-slider { width: 180px; vertical-align: middle; }
   #confidence-value { font-variant-numeric: tabular-nums; }
+  #summary-toggle {
+    margin-left: auto; padding: 5px 12px; border-radius: 6px;
+    background: #3a5233; color: #fff; border: 1px solid #547048;
+    cursor: pointer; font-size: 13px;
+  }
+  #summary-toggle:hover { background: #46613d; }
+  body.summary-mode #topbar h1, body.summary-mode #hike-label { display: none; }
 
   #main { display: flex; flex: 1; min-height: 0; }
   #map { flex: 1; }
@@ -45,8 +52,13 @@
   }
   .species-row:hover { background: #f0f4ef; }
   .species-row.selected { background: #dcebd8; border-color: #7fae74; }
+  .species-name-row { display: flex; align-items: center; }
+  .species-swatch {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    display: inline-block; margin-right: 6px;
+  }
   .species-name { font-size: 14px; }
-  .species-sci { font-size: 11px; color: #888; font-style: italic; }
+  .species-sci { font-size: 11px; color: #888; font-style: italic; margin-left: 16px; }
   .species-count {
     font-size: 12px; background: #eee; border-radius: 10px;
     padding: 2px 8px; color: #444;
@@ -75,6 +87,16 @@
       max-height: 50vh; overflow-y: auto;
     }
     #sidebar-toggle { display: inline; }
+
+    body.summary-mode #sidebar {
+      background: rgba(250, 250, 248, 0.8);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    body.summary-mode .species-row {
+      background: rgba(255, 255, 255, 0.65);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
   }
 </style>
 </head>
@@ -82,13 +104,14 @@
 <div id="app">
   <div id="topbar">
     <h1>Bird Hike Logger</h1>
-    <label>Hike:
+    <label id="hike-label">Hike:
       <select id="hike-select"></select>
     </label>
     <label>Min confidence:
       <input type="range" id="confidence-slider" min="0" max="1" step="0.01" value="0.1">
       <span id="confidence-value">0.10</span>
     </label>
+    <button id="summary-toggle">📸 Summary</button>
   </div>
   <div id="main">
     <div id="map"></div>
@@ -131,11 +154,23 @@ const map = new maplibregl.Map({
 
 let currentGeojson = null;   // full parsed geojson for the active hike
 let selectedSpecies = null;  // null == show nothing until species list loads
+let summaryMode = false;     // true == show all species at once, color-coded
+let speciesColorMap = new Map();  // species -> color, stable per hike regardless of confidence filter
+
+// Distinct, high-contrast palette. Assigned by overall detection-count rank
+// (computed once per hike from ALL detections, unfiltered by confidence) so
+// a species keeps the same color no matter where the confidence slider sits.
+const SPECIES_PALETTE = [
+  "#e6194b", "#3cb44b", "#4363d8", "#f58231", "#911eb4",
+  "#f032e6", "#008080", "#9a6324", "#800000", "#000075",
+  "#e6beff", "#808000",
+];
 
 const hikeSelect = document.getElementById("hike-select");
 const confidenceSlider = document.getElementById("confidence-slider");
 const confidenceValue = document.getElementById("confidence-value");
 const speciesListEl = document.getElementById("species-list");
+const summaryToggle = document.getElementById("summary-toggle");
 
 async function loadManifest() {
   const res = await fetch("data/manifest.json");
@@ -158,6 +193,14 @@ async function loadHike(path) {
   const res = await fetch(path);
   currentGeojson = await res.json();
   selectedSpecies = null;
+
+  const allDetections = currentGeojson.features.filter(f => f.properties.feature_type === "detection");
+  const overallRanked = speciesCounts(allDetections);
+  speciesColorMap = new Map();
+  overallRanked.forEach((entry, i) => {
+    speciesColorMap.set(entry.species, SPECIES_PALETTE[i % SPECIES_PALETTE.length]);
+  });
+
   render();
 }
 
@@ -191,6 +234,11 @@ function updateCurrentSpeciesLabel(sorted) {
     label.textContent = "No species at this confidence level";
     return;
   }
+  if (summaryMode) {
+    const total = sorted.reduce((sum, s) => sum + s.count, 0);
+    label.textContent = `All species (${total})`;
+    return;
+  }
   const entry = sorted.find(s => s.species === selectedSpecies) || sorted[0];
   label.textContent = `${entry.species} (${entry.count})`;
 }
@@ -214,15 +262,25 @@ function renderSpeciesList(sorted) {
 
   for (const entry of sorted) {
     const row = document.createElement("div");
-    row.className = "species-row" + (entry.species === selectedSpecies ? " selected" : "");
+    const isActive = !summaryMode && entry.species === selectedSpecies;
+    row.className = "species-row" + (isActive ? " selected" : "");
+    const color = speciesColorMap.get(entry.species) || "#c1440e";
     row.innerHTML = `
       <div>
-        <div class="species-name">${entry.species}</div>
+        <div class="species-name-row">
+          <span class="species-swatch" style="background:${color}"></span>
+          <span class="species-name">${entry.species}</span>
+        </div>
         <div class="species-sci">${entry.sci}</div>
       </div>
       <div class="species-count">${entry.count}</div>
     `;
     row.addEventListener("click", () => {
+      if (summaryMode) {
+        summaryMode = false;
+        document.body.classList.remove("summary-mode");
+        summaryToggle.textContent = "📸 Summary";
+      }
       selectedSpecies = entry.species;
       render();
     });
@@ -230,9 +288,22 @@ function renderSpeciesList(sorted) {
   }
 }
 
+function buildColorExpression() {
+  if (speciesColorMap.size === 0) return "#c1440e";
+  const expr = ["match", ["get", "species"]];
+  for (const [species, color] of speciesColorMap.entries()) {
+    expr.push(species, color);
+  }
+  expr.push("#888"); // fallback, shouldn't normally be hit
+  return expr;
+}
+
 function updateMapLayers() {
   const route = routeFeature();
-  const filtered = detectionFeatures().filter(f => f.properties.species === selectedSpecies);
+  const withinConfidence = detectionFeatures();
+  const markerFeatures = summaryMode
+    ? withinConfidence
+    : withinConfidence.filter(f => f.properties.species === selectedSpecies);
 
   const routeSource = map.getSource("route");
   if (routeSource) {
@@ -247,7 +318,7 @@ function updateMapLayers() {
     });
   }
 
-  const markerData = { type: "FeatureCollection", features: filtered };
+  const markerData = { type: "FeatureCollection", features: markerFeatures };
   const markerSource = map.getSource("detections");
   if (markerSource) {
     markerSource.setData(markerData);
@@ -264,6 +335,14 @@ function updateMapLayers() {
         "circle-stroke-color": "#fff",
       },
     });
+  }
+
+  if (map.getLayer("detection-points")) {
+    map.setPaintProperty(
+      "detection-points",
+      "circle-color",
+      summaryMode ? buildColorExpression() : "#c1440e"
+    );
   }
 
   // Fit the view to the route on first load of a hike.
@@ -292,6 +371,17 @@ hikeSelect.addEventListener("change", () => {
 
 confidenceSlider.addEventListener("input", () => {
   confidenceValue.textContent = parseFloat(confidenceSlider.value).toFixed(2);
+  render();
+});
+
+summaryToggle.addEventListener("click", () => {
+  summaryMode = !summaryMode;
+  document.body.classList.toggle("summary-mode", summaryMode);
+  summaryToggle.textContent = summaryMode ? "Exit summary" : "📸 Summary";
+  if (summaryMode) {
+    document.getElementById("sidebar").classList.remove("collapsed");
+    document.getElementById("sidebar-toggle").textContent = "▲";
+  }
   render();
 });
 
