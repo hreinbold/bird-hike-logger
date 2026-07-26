@@ -1,0 +1,5 @@
+# raw exports can be large / not meant for public repo history
+data/detections/*.csv
+data/gpx/*.gpx
+__pycache__/
+*.pyc
