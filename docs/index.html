@@ -138,6 +138,7 @@ const map = new maplibregl.Map({
   container: "map",
   style: {
     version: 8,
+    glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
     sources: {
       osm: {
         type: "raster",
@@ -397,6 +398,7 @@ function updateMapLayers() {
       source: "detections",
       layout: {
         "text-field": ["case", ["==", ["get", "count"], 1], "", ["to-string", ["get", "count"]]],
+        "text-font": ["Open Sans Regular"],
         "text-size": 12,
         "text-allow-overlap": true,
         "text-ignore-placement": true,
