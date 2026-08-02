@@ -288,14 +288,68 @@ function renderSpeciesList(sorted) {
   }
 }
 
-function buildColorExpression() {
-  if (speciesColorMap.size === 0) return "#c1440e";
-  const expr = ["match", ["get", "species"]];
-  for (const [species, color] of speciesColorMap.entries()) {
-    expr.push(species, color);
+const CLUSTER_DISTANCE_METERS = 15;
+
+function haversineMeters(a, b) {
+  const R = 6371000;
+  const toRad = deg => (deg * Math.PI) / 180;
+  const dLat = toRad(b[1] - a[1]);
+  const dLon = toRad(b[0] - a[0]);
+  const lat1 = toRad(a[1]);
+  const lat2 = toRad(b[1]);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+// Greedy proximity clustering within one species' points. Points within
+// CLUSTER_DISTANCE_METERS of a cluster's running centroid join that cluster;
+// otherwise they start a new one. Good enough for decluttering repeated
+// same-spot calls (e.g. a hawk calling for a few minutes from one tree) --
+// not meant to be a precise clustering algorithm.
+function clusterOneSpecies(features) {
+  const clusters = [];
+  for (const f of features) {
+    const coord = f.geometry.coordinates;
+    const target = clusters.find(c => haversineMeters(c.centroid, coord) <= CLUSTER_DISTANCE_METERS);
+    if (target) {
+      target.count += 1;
+      target.sumLon += coord[0];
+      target.sumLat += coord[1];
+      target.centroid = [target.sumLon / target.count, target.sumLat / target.count];
+    } else {
+      clusters.push({
+        centroid: coord.slice(),
+        sumLon: coord[0],
+        sumLat: coord[1],
+        count: 1,
+        species: f.properties.species,
+        sci: f.properties.scientific_name,
+      });
+    }
   }
-  expr.push("#888"); // fallback, shouldn't normally be hit
-  return expr;
+  return clusters;
+}
+
+function buildClusterFeatures(features) {
+  const bySpecies = new Map();
+  for (const f of features) {
+    const key = f.properties.species;
+    if (!bySpecies.has(key)) bySpecies.set(key, []);
+    bySpecies.get(key).push(f);
+  }
+
+  const clusterFeatures = [];
+  for (const [species, group] of bySpecies.entries()) {
+    const color = speciesColorMap.get(species) || "#c1440e";
+    for (const c of clusterOneSpecies(group)) {
+      clusterFeatures.push({
+        type: "Feature",
+        geometry: { type: "Point", coordinates: c.centroid },
+        properties: { species: c.species, scientific_name: c.sci, count: c.count, color },
+      });
+    }
+  }
+  return clusterFeatures;
 }
 
 function updateMapLayers() {
@@ -304,6 +358,7 @@ function updateMapLayers() {
   const markerFeatures = summaryMode
     ? withinConfidence
     : withinConfidence.filter(f => f.properties.species === selectedSpecies);
+  const clusterFeatures = buildClusterFeatures(markerFeatures);
 
   const routeSource = map.getSource("route");
   if (routeSource) {
@@ -318,7 +373,7 @@ function updateMapLayers() {
     });
   }
 
-  const markerData = { type: "FeatureCollection", features: markerFeatures };
+  const markerData = { type: "FeatureCollection", features: clusterFeatures };
   const markerSource = map.getSource("detections");
   if (markerSource) {
     markerSource.setData(markerData);
@@ -329,20 +384,29 @@ function updateMapLayers() {
       type: "circle",
       source: "detections",
       paint: {
-        "circle-radius": 7,
-        "circle-color": "#c1440e",
+        "circle-radius": ["interpolate", ["linear"], ["get", "count"], 1, 8, 5, 13, 20, 20],
+        "circle-color": ["get", "color"],
+        "circle-opacity": 0.85,
         "circle-stroke-width": 2,
         "circle-stroke-color": "#fff",
       },
     });
-  }
-
-  if (map.getLayer("detection-points")) {
-    map.setPaintProperty(
-      "detection-points",
-      "circle-color",
-      summaryMode ? buildColorExpression() : "#c1440e"
-    );
+    map.addLayer({
+      id: "detection-count-labels",
+      type: "symbol",
+      source: "detections",
+      layout: {
+        "text-field": ["case", ["==", ["get", "count"], 1], "", ["to-string", ["get", "count"]]],
+        "text-size": 12,
+        "text-allow-overlap": true,
+        "text-ignore-placement": true,
+      },
+      paint: {
+        "text-color": "#ffffff",
+        "text-halo-color": "rgba(0,0,0,0.45)",
+        "text-halo-width": 1.2,
+      },
+    });
   }
 
   // Fit the view to the route on first load of a hike.
