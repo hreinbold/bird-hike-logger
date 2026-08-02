@@ -1,5 +1,12 @@
 [
   {
+    "id": "2026-08-02_bird-detector-test-2",
+    "date": "2026-08-02",
+    "label": "Bird Detector Test 2",
+    "file": "data/2026-08-02_bird-detector-test-2.geojson",
+    "detection_count": 131
+  },
+  {
     "id": "2026-07-26_bird-detector-test",
     "date": "2026-07-26",
     "label": "Bird Detector Test",
